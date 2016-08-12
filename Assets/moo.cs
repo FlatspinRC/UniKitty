@@ -19,18 +19,15 @@ public class moo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		jump ();
-
-		lookRight ();
-		lookLeft ();
-
-	
+		Right ();
+		Left ();
 		bool movedForward = forward ();
 		bool movedBackward = backward ();
 		if (movedForward || movedBackward) {
 			//phys.drag = 0;
 			movedLastTurn = true;
 		} else if(movedLastTurn) {
-			StartCoroutine (brake());
+			//StartCoroutine (brake());
 		}
 	}
 
@@ -40,23 +37,21 @@ public class moo : MonoBehaviour {
 		}
 	}
 
-	public void lookRight(){
+	public void Right(){
 		if (Input.GetKey (KeyCode.RightArrow)) {
-			transform.Rotate (Vector3.up * Time.deltaTime * spinSpeed);
+			transform.Translate (Vector3.right * Time.deltaTime * moveSpeed);
 		}
 	}
 
-	public void lookLeft(){
+	public void Left(){
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			transform.Rotate (Vector3.down * Time.deltaTime * spinSpeed);
+			transform.Translate (Vector3.left * Time.deltaTime * moveSpeed);
 		}
 	}
 
 	public bool forward(){
 		if (Input.GetKey (KeyCode.UpArrow)) {
-			Vector3 lookDirection = camera.transform.forward;
-			Vector3 moveVector = lookDirection * moveSpeed;
-			setNewVelocity (moveVector);
+			transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed);
 			return true;
 		}
 		return false;
@@ -64,17 +59,12 @@ public class moo : MonoBehaviour {
 
 	public bool backward(){
 		if (Input.GetKey (KeyCode.DownArrow)) {
-			Vector3 lookDirection = camera.transform.forward;
-			Vector3 moveVector = lookDirection * moveSpeed * -1;
-			setNewVelocity (moveVector);
+			transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed * -1);
+			return true;
 		}
 		return false;
 	}
 
-	public void setNewVelocity(Vector3 newVelocity) {
-		float jumpin = phys.velocity.z;
-		phys.AddForce (newVelocity  * phys.mass, ForceMode.Force);
-	}
 
 	public IEnumerator brake() {
 		phys.drag = 100;

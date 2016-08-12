@@ -2,7 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\moo.cs">
     <Files>
-      <File FileName="Assets\moo.cs" Line="33" Column="27" />
+      <File FileName="Assets\moo.cs" Line="54" Column="58" />
+      <File FileName="Assets\SimpleSmoothMouseLook.cs" Line="80" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
